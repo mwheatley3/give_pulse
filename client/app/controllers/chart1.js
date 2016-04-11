@@ -26,17 +26,17 @@ angular.module('myApp.chart1', [])
 	      text: 'What type of organizations give their time?'
 	    },
 	    xAxis: {
-            categories: []
-        },
-        yAxis: {
-            title: {
-                text: 'Hours'
-            }
-        },
-        series: [{
-        	name: 'Hours',
-        	data:[]
-        }],
+        categories: []
+      },
+      yAxis: {
+        title: {
+          text: 'Hours'
+        }
+      },
+      series: [{
+      	name: 'Hours',
+      	data: []
+      }],
 	    loading: false
 		}
 

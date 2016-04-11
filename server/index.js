@@ -31,7 +31,6 @@ app.get('/data', function(req, res) {
 								' where groups.id = events.group_id' +
 								' and events.id = impacts.event_id' +
 								' group by groups.type';
-		console.log('query', query);
 		connection.query(query, function(err, rows) {
 			connection.release();
 			res.send(rows);
@@ -57,7 +56,6 @@ app.get('/data2', function(req, res) {
 								' and users.id = user_skills.user_id' +
 								' group by skills.skill) skills_by_users' +
 								' where skills_by_event.skill = skills_by_users.skill';
-		console.log('query2', query2);
 		connection.query(query2, function(err, rows) {
 			connection.release();
 			res.send(rows);

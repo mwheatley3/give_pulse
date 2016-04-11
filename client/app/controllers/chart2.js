@@ -16,7 +16,6 @@ angular.module('myApp.chart2', [])
 			})
 		}();
 
-
 		$scope.chartConfig2 = {
 	    options: {
 	      chart: {
@@ -24,19 +23,20 @@ angular.module('myApp.chart2', [])
 	      }
 	    },
 	    title: {
-	      text: 'What type of skills are needed?'
+	      text: 'What type of skills are needed?',
+	      align: 'left' 
 	    },
 	    xAxis: {
-            categories: []
-        },
+        categories: []
+      },
       yAxis: {
-          title: {
-              text: 'Number of Events vs. Users'
-          }
+        title: {
+          text: 'Number of Events vs. Users'
+        }
       },
       series: [{
       	name: 'events needing skill',
-      	data:[]
+      	data: []
       }, {
       	name: 'users having skill',
       	data: []
