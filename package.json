@@ -1,0 +1,26 @@
+{
+  "name": "give_pulse",
+  "version": "1.0.0",
+  "description": "code challenge",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server/index.js",
+    "postinstall": "cd client && bower install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mwheatley3/give_pulse.git"
+  },
+  "author": "Michael Wheatley",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mwheatley3/give_pulse/issues"
+  },
+  "homepage": "https://github.com/mwheatley3/give_pulse#readme",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "bower": "^1.7.9",
+    "express": "^4.13.4",
+    "mysql": "^2.10.2"
+  }
+}
