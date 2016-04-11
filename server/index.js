@@ -4,7 +4,7 @@ var port = process.env.PORT || 8008;
 var bodyParser = require('body-parser');
 var Path = require('path');
 var mysql = require('mysql');
-var env       = process.env.NODE_ENV || "development";
+var env = process.env.NODE_ENV || "development";
 if (env === "development") {
 	var pool = mysql.createPool({
 	  host: "localhost",
