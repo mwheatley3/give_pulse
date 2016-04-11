@@ -4,13 +4,17 @@ var port = process.env.PORT || 8008;
 var bodyParser = require('body-parser');
 var Path = require('path');
 var mysql = require('mysql');
-
-var con = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: null,
-  database: "givepulse_test"
-});
+var env       = process.env.NODE_ENV || "development";
+if (env === "development") {
+	var con = mysql.createConnection({
+	  host: "localhost",
+	  user: "root",
+	  password: null,
+	  database: "givepulse_test"
+	});
+} else {
+	var con = mysql.createConnection(process.env.CLEARDB_DATABASE_URL);
+}
 
 con.connect(function(err){
   if(err){
@@ -31,8 +35,26 @@ app.get('/data', function(req, res) {
 							' and events.id = impacts.event_id' +
 							' group by groups.type';
 	console.log('query', query);
-	con.query(query, function(err, rows){
-		console.log('rows', rows)
+	con.query(query, function(err, rows) {
+		res.send(rows);
+	})
+})
+
+app.get('/data2', function(req, res) {
+	var query2 = 'select skills_by_event.skill, events, users from' + 
+							' (select skills.skill, count(events.id) events' +
+							' from skills, event_skills, events' +
+							' where event_skills.event_id = events.id' +
+							' and event_skills.skill_id = skills.id' +
+							' group by skills.skill) skills_by_event,' +
+							' (select skills.skill, count(users.id) users' +
+							' from skills, user_skills, users' +
+							' where skills.id = user_skills.skill_id' +
+							' and users.id = user_skills.user_id' +
+							' group by skills.skill) skills_by_users' +
+							' where skills_by_event.skill = skills_by_users.skill';
+	console.log('query2', query2);
+	con.query(query2, function(err, rows) {
 		res.send(rows);
 	})
 })

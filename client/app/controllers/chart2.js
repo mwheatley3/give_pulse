@@ -3,40 +3,15 @@
 angular.module('myApp.chart2', [])
   .controller('Chart2Ctrl', ['$scope','Service', function($scope,Service) {
   	$scope.data = [];
-    $scope.chartConfig1 = {
-	    options: {
-	      chart: {
-	        type: 'bar'
-	      }
-	    },
-	    title: {
-	      text: 'Hello'
-	    },
-	    xAxis: {
-            categories: ['Apples', 'Bananas', 'Oranges']
-        },
-        yAxis: {
-            title: {
-                text: 'Fruit eaten'
-            }
-        },
-        series: [{
-            name: 'Jane',
-            data: [1, 0, 4]
-        }, {
-            name: 'John',
-            data: [5, 7, 3]
-        }],
-	    loading: false
-		}
 
-		$scope.getData = function(){
-			Service.getData()
+		$scope.getData2 = function(){
+			Service.getData2()
 			.then(function(resp) {
 				$scope.data = resp;
-				$scope.data.forEach(function(type) {
-					$scope.chartConfig2.xAxis.categories.push(type.type);
-					$scope.chartConfig2.series[0].data.push(type.hours);
+				$scope.data.forEach(function(skill) {
+					$scope.chartConfig2.xAxis.categories.push(skill.skill);
+					$scope.chartConfig2.series[0].data.push(skill.events);
+					$scope.chartConfig2.series[1].data.push(skill.users);
 				});
 			})
 		}();
@@ -45,24 +20,31 @@ angular.module('myApp.chart2', [])
 		$scope.chartConfig2 = {
 	    options: {
 	      chart: {
-	        type: 'bar'
+	        type: 'column'
 	      }
 	    },
 	    title: {
-	      text: 'What type of organizations give their time?'
+	      text: 'What type of skills are needed?'
 	    },
 	    xAxis: {
             categories: []
         },
-        yAxis: {
-            title: {
-                text: 'Hours'
-            }
-        },
-        series: [{
-        	name: 'Hours',
-        	data:[]
-        }],
+      yAxis: {
+          title: {
+              text: 'Number of Events vs. Users'
+          }
+      },
+      series: [{
+      	name: 'events needing skill',
+      	data:[]
+      }, {
+      	name: 'users having skill',
+      	data: []
+      }],
+      size: {
+   			width: 2000,
+   			height: 400
+  		},
 	    loading: false
 		}
 
